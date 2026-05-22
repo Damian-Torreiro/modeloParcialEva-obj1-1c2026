@@ -11,7 +11,7 @@ object eva01 {
   }
   method puntosQueOtorga() = 2
 
-  method cumpleRequisitosSincro(piloto) = piloto.puntosEntrenamiento() >= 4 and energia > 30
+  method cumpleRequisitosSincro(piloto) = piloto.puntosDeEntrenamiento() >= 4 and energia > 30
 
   method recargarEnergia(horas){
     energia = (energia + 30 * horas).min(100)
@@ -20,16 +20,16 @@ object eva01 {
 
 object eva02 {
     method campoAT() = 2114
-    var energia = 100
+    var property energia = 100
     var modo = estandar
-    method cumpleRequisitosSincro(piloto) = piloto.puntosEntrenamiento() >= 2 and energia > 20
+    method cumpleRequisitosSincro(piloto) = piloto.puntosDeEntrenamiento() >= 2 and energia > 20
 
     method cambioAModo(modoNuevo){
         modo = modoNuevo
     }
 
     method efectoDeSincroCon(piloto){
-    energia = energia - modo.energiaConsumida()
+    energia = energia - modo.consumo()
   }
     method puntosQueOtorga() = modo.puntosQueOtorga()
 

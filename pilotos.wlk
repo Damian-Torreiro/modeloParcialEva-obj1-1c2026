@@ -1,7 +1,7 @@
 import evas.*
 import cuartel.*
 object asuka {
-    var puntosDeEntrenamiento = 5
+    var property puntosDeEntrenamiento = 5
     var ultimoEvaSincro = eva01
     method estaSatisfecho() = ultimoEvaSincro.fuerzaAT() > 2115
     method efectoDeSincroCon(eva){
@@ -13,7 +13,7 @@ object asuka {
 }
 
 object shinji {
-    var puntosDeEntrenamiento = 2
+    var property puntosDeEntrenamiento = 2
     var ultimoEvaSincro = eva01
     const evasSincro = {}
     var estaDescansado = true
@@ -33,7 +33,7 @@ object shinji {
 }
 
 object rei {
-    var puntosDeEntrenamiento = 0
+    var property puntosDeEntrenamiento = 0
     var cantidadDeSincros = 0
     method estaSatisfecho() = cantidadDeSincros >= 1
     method efectoDeSincroCon(eva){

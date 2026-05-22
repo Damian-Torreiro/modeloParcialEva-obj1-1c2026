@@ -1,0 +1,52 @@
+
+import cuartel.*
+import evas.*
+import pilotos.*
+import modos.*
+
+describe "test" {
+  test "dassda" {
+    nerv.registrarEva(eva01)
+    nerv.registrarEva(eva00)
+    nerv.registrarPiloto(asuka)
+    nerv.registrarPiloto(rei)
+    rei.efectoDeSincroCon(eva01)
+    rei.efectoDeSincroCon(eva01)
+    assert.that(nerv.todosPuedenPilotarAlMenosUnEva())
+
+  }
+  test "El EVA-01 no puede usarse más de 3 veces seguidas sin recargarse." {
+    eva01.efectoDeSincroCon(asuka)
+    eva01.efectoDeSincroCon(asuka)
+    eva01.efectoDeSincroCon(asuka)
+    assert.notThat(eva01.cumpleRequisitosSincro(asuka))
+  }
+
+  test "En modo ataque, el EVA-02 otorga 3 de entrenamiento y consume 20 de energía." {
+    eva02.cambioAModo(ataque)
+    nerv.intentarSincro(eva02, asuka)
+    assert.equals(8, asuka.puntosDeEntrenamiento())
+    assert.equals(80, eva02.energia())
+  }
+  test "Shinji puede al inicio sincronizar con el EVA-00." {
+    assert.that(nerv.puedenSincro(shinji, eva00))
+  }
+  test "Probar que Rei no puede realizar más de 5 sincronizaciones en total." {
+    eva00.mejorarFuerzaATen(10)
+    nerv.intentarSincro(rei, eva00)
+    nerv.intentarSincro(rei, eva00)
+    nerv.intentarSincro(rei, eva00)
+    nerv.intentarSincro(rei, eva00)
+    nerv.intentarSincro(rei, eva00)
+    assert.notThat(nerv.puedenSincro(rei, eva00))
+  }
+  test "descriptionEl cálculo del promedio de puntos de entrenamiento de los pilotos es correcto." {
+    nerv.registrarPiloto(asuka)
+    nerv.registrarPiloto(rei)
+    nerv.registrarPiloto(shinji)
+    assert.equals(7/3, nerv.promedioPuntosPilotos())
+  }
+  
+    // segun creo tengo que hace un metodo nuevo para lo que pide este test en particular pero no estoy del todo seguro 
+    
+}
